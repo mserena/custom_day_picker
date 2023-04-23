@@ -17,8 +17,11 @@ class SelectWeekDays extends StatefulWidget {
   /// [fontSize] - property to change the size of selected text
   final double? fontSize;
 
-  /// [daysFillColor] -  property to change the button color of days when the button is pressed.
-  final Color? daysFillColor;
+  /// [unSelectedDaysFillColor] -  property to change the button color of days when the button is not selected.
+  final Color? unSelectedDaysFillColor;
+
+  /// [selecteddaysFillColor] -  property to change the button color of days when the button is selected.
+  final Color? selectedDaysFillColor;
 
   /// [daysBorderColor] - property to change the border color of the rounded buttons.
   final Color? daysBorderColor;
@@ -38,6 +41,9 @@ class SelectWeekDays extends StatefulWidget {
   /// [padding] property  to handle the padding between the container and buttons by default it is 8.0
   final double padding;
 
+  /// [padding] property  to handle the padding between the container and buttons by default it is 8.0
+  final double paddingDay;
+
   /// The property that can be used to specify the [width] of the [SelectWeekDays] container.
   /// By default this property will take the full width of the screen.
   final double? width;
@@ -49,13 +55,15 @@ class SelectWeekDays extends StatefulWidget {
     this.backgroundColor,
     this.fontWeight,
     this.fontSize,
-    this.daysFillColor,
+    this.unSelectedDaysFillColor,
+    this.selectedDaysFillColor,
     this.daysBorderColor,
     this.selectedDayTextColor,
     this.unSelectedDayTextColor,
     this.border = true,
     this.boxDecoration,
     this.padding = 8.0,
+    this.paddingDay = 8.0
     this.width,
     required this.days,
     Key? key,
@@ -108,11 +116,11 @@ class _SelectWeekDaysState extends State<SelectWeekDays> {
   }
 
 // getter to handle fill color of buttons.
-  Color? get _handleDaysFillColor {
-    if (widget.daysFillColor == null) {
+  Color? get _handleSelectedDaysFillColor {
+    if (widget.selectedDaysFillColor == null) {
       return Colors.white;
     } else {
-      return widget.daysFillColor;
+      return widget.selectedDaysFillColor;
     }
   }
 
@@ -162,8 +170,7 @@ class _SelectWeekDaysState extends State<SelectWeekDays> {
             (day) {
               return Expanded(
                 child: RawMaterialButton(
-                  fillColor:
-                      day.isSelected == true ? _handleDaysFillColor : null,
+                  fillColor: day.isSelected == true ? _handleSelectedDaysFillColor : widget.unSelectedDaysFillColor,
                   shape: CircleBorder(
                     side: widget.border
                         ? BorderSide(
@@ -179,7 +186,7 @@ class _SelectWeekDaysState extends State<SelectWeekDays> {
                     _getSelectedWeekDays(day.isSelected, day.dayKey);
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(widget.paddingDay),
                     child: Text(
                       day.dayName.length < 3
                           ? day.dayName
