@@ -63,7 +63,7 @@ class SelectWeekDays extends StatefulWidget {
     this.border = true,
     this.boxDecoration,
     this.padding = 8.0,
-    this.paddingDay = 8.0
+    this.paddingDay = 8.0,
     this.width,
     required this.days,
     Key? key,
@@ -186,7 +186,7 @@ class _SelectWeekDaysState extends State<SelectWeekDays> {
                     _getSelectedWeekDays(day.isSelected, day.dayKey);
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(widget.paddingDay),
+                    padding: EdgeInsets.all(widget.paddingDay),
                     child: Text(
                       day.dayName.length < 3
                           ? day.dayName
