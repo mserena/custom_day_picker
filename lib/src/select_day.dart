@@ -109,7 +109,7 @@ class _SelectWeekDaysState extends State<SelectWeekDays> {
 // getter to handle background color of container.
   Color? get _handleBackgroundColor {
     if (widget.backgroundColor == null) {
-      return Theme.of(context).accentColor;
+      return Theme.of(context).scaffoldBackgroundColor;
     } else {
       return widget.backgroundColor;
     }
